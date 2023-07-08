@@ -43,6 +43,29 @@ We do not recommend to turn on this option on Mac.
 
 Two datasets are provided under `data/` folder: [pendigits](https://archive.ics.uci.edu/dataset/81/pen+based+recognition+of+handwritten+digits) and [optdigits](https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits).
 
+### Training
+```
+./abcboost_train -method robustlogit -data ./data/optdigits.train.csv -v 0.1 -J 20 -iter 100 -feature_split_sample_rate 0.1
+```
+
+### Unlearning
+```
+echo 9 > unids.txt # Unlearn 9-th data
+./abcboost_unlearn -data ./data/optdigits.train.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model -unlearning_ids_path unids.txt
+```
+
+### Tuning
+```
+./abcboost_tune -method robustlogit -data ./data/optdigits.train.csv -tuning_data_path ./data/optdigits.tune.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model
+```
+
+### Predicting
+```
+./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model
+./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1_unlearn.model
+./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1_tune.model
+```
+
 
 ## More Configuration Options:
 #### Data related:
