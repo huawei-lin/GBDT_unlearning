@@ -44,28 +44,34 @@ We do not recommend to turn on this option on Mac.
 Two datasets are provided under `data/` folder: [pendigits](https://archive.ics.uci.edu/dataset/81/pen+based+recognition+of+handwritten+digits) and [optdigits](https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits).
 
 ### Training
+We support both `Robust LogitBoost` and `MART`. Because `Robust LogitBoost` uses second-order information to compute the gain for tree plits, it often improves `MART`. Users can replace `robustlogit` by `mart` to test different algorithms. 
 ```
 ./abcboost_train -method robustlogit -data ./data/optdigits.train.csv -v 0.1 -J 20 -iter 100 -feature_split_sample_rate 0.1
 ```
+This command will generate `optdigits.train.csv_robustlogit_J20_v0.1.model` that used for the following unlearning or tuning.
 
 ### Unlearning
+Here we would like to unlearn (delect) the 9-th data sample from the `optdigits.train.csv_robustlogit_J20_v0.1.model`.
+Please note that it need to load the original data of the model.
 ```
-echo 9 > unids.txt # Unlearn 9-th data
+echo 9 > unids.txt # Unlearn 9-th data sample
 ./abcboost_unlearn -data ./data/optdigits.train.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model -unlearning_ids_path unids.txt
 ```
 
 ### Tuning
+Here we would like to tune (add) a new dataset `./data/optdigits.tune.csv` to the `optdigits.train.csv_robustlogit_J20_v0.1.model`.
+Please note that it need to load the original data of the model.
 ```
 ./abcboost_tune -method robustlogit -data ./data/optdigits.train.csv -tuning_data_path ./data/optdigits.tune.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model
 ```
 
 ### Predicting
+Here we would like to evaluate these three models in `./data/optdigits.test.csv`.
 ```
 ./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model
 ./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1_unlearn.model
 ./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1_tune.model
 ```
-
 
 ## More Configuration Options:
 #### Data related:
@@ -96,3 +102,14 @@ echo 9 > unids.txt # Unlearn 9-th data
 * `-save_model`, 0/1 (default 1)
 * `-save_prob`, 0/1 (default 0) whether save the prediction probability for classification tasks
 * `-save_importance`, 0/1 (default 0) whether save the feature importance in the training
+
+
+## References
+If you found OnlineBoosting useful in your research or applications, please cite using the following article:
+* Huawei Lin, Jun Woo Chung, Yingjie Lao and Weijie Zhao. [Machine Unlearning in Gradient Boosting Decision Trees](https://openreview.net/forum?id=1ciFPLlyR6d). SIGKDD 2023.
+* Ping Li and Weijie Zhao. [Fast ABC-Boost: A Unified Framework for Selecting the Base Class in Multi-Class Classification](https://arxiv.org/pdf/2205.10927.pdf).  arXiv:2205.10927, 2022.
+* Ping Li and Weijie Zhao. [Package for Fast ABC-Boost](https://arxiv.org/pdf/2207.08770.pdf).  arXiv:2207.08770, 2022.
+
+
+## Copyright and License
+OnlineBoosting is provided under the Apache-2.0 license.
