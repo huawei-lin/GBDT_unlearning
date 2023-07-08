@@ -112,7 +112,7 @@ class Tree {
   void unlearnTree(std::vector<uint> *ids, std::vector<uint> *fids, \
                    std::vector<uint> *unids_ptr);
   void tuneTree(std::vector<uint> *ids, std::vector<uint> *fids, \
-                   std::vector<uint> *tune_ids_ptr, std::vector<double>& time_records, int& retrain_node_cnt);
+                   std::vector<uint> *tune_ids_ptr);
 
   void updateFeatureImportance(int iter);
 

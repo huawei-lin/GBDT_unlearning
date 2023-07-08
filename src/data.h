@@ -34,33 +34,40 @@ typedef unsigned short data_quantized_t;
 struct DataHeader {
   unsigned int n_feats;
   unsigned int n_classes;
+  unsigned int n_classes_real;
   std::vector<unsigned short> unobserved_fv;  // unobserved values for features
   std::vector<int> n_bins_per_f;  // number of discrete categories per feature
   std::vector<std::vector<double>> bin_starts_per_f;
   std::vector<double> idx2label;  // inverse mapping of label2idx
   std::unordered_map<double, unsigned short> label2idx;  // reordered labels
+  std::vector<unsigned int> valid_fi_record;
 
   void serialize(FILE* fp) {
     Utils::serialize(fp, n_feats);
     Utils::serialize(fp, n_classes);
+    Utils::serialize(fp, n_classes_real);
     Utils::serialize_vector(fp, unobserved_fv);
     Utils::serialize_vector(fp, n_bins_per_f);
     Utils::serialize_vector2d(fp, bin_starts_per_f);
     Utils::serialize_vector(fp, idx2label);
+    Utils::serialize_vector(fp, valid_fi_record);
   }
   
 	void serialize_no_map(FILE* fp) {
     Utils::serialize(fp, n_feats);
     Utils::serialize(fp, n_classes);
+    Utils::serialize(fp, n_classes_real);
     Utils::serialize_vector(fp, unobserved_fv);
     Utils::serialize_vector(fp, n_bins_per_f);
     Utils::serialize_vector(fp, idx2label);
+    Utils::serialize_vector(fp, valid_fi_record);
   }
 
   static DataHeader deserialize(FILE* fp) {
     DataHeader data_header;
     data_header.n_feats = Utils::deserialize<unsigned int>(fp);
     data_header.n_classes = Utils::deserialize<unsigned int>(fp);
+    data_header.n_classes_real = Utils::deserialize<unsigned int>(fp);
     data_header.unobserved_fv = Utils::deserialize_vector<unsigned short>(fp);
     data_header.n_bins_per_f = Utils::deserialize_vector<int>(fp);
     data_header.bin_starts_per_f = Utils::deserialize_vector2d<double>(fp);
@@ -69,6 +76,7 @@ struct DataHeader {
     for (int i = 0; i < data_header.idx2label.size(); ++i) {
       data_header.label2idx[data_header.idx2label[i]] = i;
     }
+    data_header.valid_fi_record = Utils::deserialize_vector<unsigned int>(fp);
     return data_header;
   }
   
@@ -76,6 +84,7 @@ struct DataHeader {
     DataHeader data_header;
     data_header.n_feats = Utils::deserialize<unsigned int>(fp);
     data_header.n_classes = Utils::deserialize<unsigned int>(fp);
+    data_header.n_classes_real = Utils::deserialize<unsigned int>(fp);
     data_header.unobserved_fv = Utils::deserialize_vector<unsigned short>(fp);
     data_header.n_bins_per_f = Utils::deserialize_vector<int>(fp);
     data_header.idx2label = Utils::deserialize_vector<double>(fp);
@@ -83,6 +92,7 @@ struct DataHeader {
     for (int i = 0; i < data_header.idx2label.size(); ++i) {
       data_header.label2idx[data_header.idx2label[i]] = i;
     }
+    data_header.valid_fi_record = Utils::deserialize_vector<unsigned int>(fp);
     return data_header;
   }
 };

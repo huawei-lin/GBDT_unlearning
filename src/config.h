@@ -70,6 +70,7 @@ class Config {
   double model_shrinkage = 0.1;
   bool model_n_iter_cmd = false;
   int model_n_iterations = 1000;
+  int model_n_classes = 0;
   int model_more_iter = 0;
   int model_save_every = 100;
   int model_eval_every = 1;
@@ -214,6 +215,7 @@ class Config {
     fwrite(&model_feature_sample_rate, sizeof(double), 1, fp);
     fwrite(&model_shrinkage, sizeof(double), 1, fp);
     fwrite(&model_n_iterations, sizeof(int), 1, fp);
+    fwrite(&model_n_classes, sizeof(int), 1, fp);
     fwrite(&model_save_every, sizeof(int), 1, fp);
     fwrite(&model_eval_every, sizeof(int), 1, fp);
     saveString(model_mode, fp);
@@ -309,6 +311,7 @@ class Config {
       model_n_iterations = mni;
     }
 
+    ret += fread(&model_n_classes, sizeof(int), 1, fp);
     ret += fread(&model_save_every, sizeof(int), 1, fp);
     ret += fread(&model_eval_every, sizeof(int), 1, fp);
     loadString(str, fp);
@@ -378,6 +381,7 @@ class Config {
 * `-model_feature_sample_rate` (default 1.0)\n\
 * `-model_shrinkage`, `-shrinkage`, `-v`, the learning rate (default 0.1)\n\
 * `-model_n_iterations`, `-iter` (default 1000)\n\
+* `-model_n_classes` (default 0) the max number of classes allowed in this model (>= the number of classes on current dataset, 0 indicates do not set a specific class number)\n\
 * `-model_save_every`, `-save` (default 100)\n\
 * `-model_eval_every`, `-eval` (default 1)\n\
 * `-model_name`, `-method` regression/lambdarank/mart/abcmart/robustlogit/abcrobustlogit (default robustlogit)\n\
@@ -396,8 +400,10 @@ class Config {
 * `-regression_huber_loss`, `-huber` 0/1 (default 0) whether use huber loss\n\
 * `-regression_huber_delta`, `-huber_delta` the delta parameter for huber loss. This parameter only takes into effect when `-regression_huber_loss 1` is set\n\
 #### Unlearning related:\n\
-* `-unlearning_ids_path` path to unlearning's indies\n\
+* `-unlearning_ids_path` path to unlearning indies\n\
 * `-lazy_update_freq` (default 1)\n\
+#### Tuning related:\n\
+* `-tuning_data_path` path to tuning data\n\
 #### Parallelism:\n\
 * `-n_threads`, `-threads` (default 1)\n\
 * `-use_gpu` 0/1 (default 1 if compiled with CUDA) whether use GPU to train models. This parameter only takes into effect when the flag `-DCUDA=on` is set in `cmake`.\n\
@@ -506,6 +512,8 @@ class Config {
       } else if (key == "more_iter") {
         model_n_iterations = stoi(value);
         model_more_iter = stoi(value);
+      } else if (key == "model_n_classes") {
+        model_n_classes = stoi(value);
       } else if (key == "model_shrinkage" || key == "shrinkage" || key == "v") {
         model_shrinkage = stod(value);
       } else if (key == "model_use_logit") {
