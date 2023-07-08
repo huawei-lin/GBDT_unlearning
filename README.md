@@ -79,7 +79,7 @@ Here we would like to evaluate these three models in `./data/optdigits.test.csv`
 * `-data_max_n_bins` max number of bins (default 1000)
 * `-data_path, -data` path to train/test data
 #### Tree related:
-* `-tree_max_n_leaves`, -J (default 20)
+* `-tree_max_n_leaves`, `-J` (default 20)
 * `-tree_min_node_size` (default 10)
 * `-tree_n_random_layers` (default 0)
 * `-feature_split_sample_rate` (default 1.0)
