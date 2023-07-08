@@ -106,9 +106,25 @@ Here we would like to evaluate these three models in `./data/optdigits.test.csv`
 
 ## References
 If you found OnlineBoosting useful in your research or applications, please cite using the following article:
-* Huawei Lin, Jun Woo Chung, Yingjie Lao and Weijie Zhao. [Machine Unlearning in Gradient Boosting Decision Trees](https://openreview.net/forum?id=1ciFPLlyR6d). SIGKDD 2023.
-* Ping Li and Weijie Zhao. [Fast ABC-Boost: A Unified Framework for Selecting the Base Class in Multi-Class Classification](https://arxiv.org/pdf/2205.10927.pdf).  arXiv:2205.10927, 2022.
-* Ping Li and Weijie Zhao. [Package for Fast ABC-Boost](https://arxiv.org/pdf/2207.08770.pdf).  arXiv:2207.08770, 2022.
+```
+@inproceedings{Proc:Lin_KDD23,
+  author    = {Huawei Lin and Jun Woo Chung and Yingjie Lao and Weijie Zhao},
+  title     = {Machine Unlearning in Gradient Boosting Decision Trees},
+  booktitle = {KDD},
+  year      = {2023},
+  address   = {Long Beach, CA}
+}
+```
+```
+@article{DBLP:journals/corr/abs-2207-08770,
+  author    = {Ping Li and
+               Weijie Zhao},
+  title     = {Package for Fast ABC-Boost},
+  journal   = {CoRR},
+  volume    = {abs/2207.08770},
+  year      = {2022},
+}
+```
 
 
 ## Copyright and License
