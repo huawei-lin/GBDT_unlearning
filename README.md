@@ -62,9 +62,14 @@ Two datasets are provided under `data/` folder: [pendigits](https://archive.ics.
 * `-model_n_classes` (default 0) the max number of classes allowed in this model (>= the number of classes on current dataset, 0 indicates do not set a specific class number)
 * `-model_name`, `-method` regression/lambdarank/mart/abcmart/robustlogit/abcrobustlogit (default robustlogit)
 #### Unlearning related:
-* `-unlearning_ids_path` path to unlearning indies
+* `-unlearning_ids_path` path to unlearning indices
 * `-lazy_update_freq` (default 1)
 #### Tuning related:
 * `-tuning_data_path` path to tuning data
 #### Parallelism:
 * `-n_threads`, `-threads` (default 1)
+#### Other:
+* `-save_log`, 0/1 (default 0) whether save the runtime log to file
+* `-save_model`, 0/1 (default 1)
+* `-save_prob`, 0/1 (default 0) whether save the prediction probability for classification tasks
+* `-save_importance`, 0/1 (default 0) whether save the feature importance in the training
