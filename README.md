@@ -1,6 +1,6 @@
 # OnlineBoosting
 
-The implementation for paper [Machine Unlearning in Gradient Boosting Decision Trees](https://openreview.net/forum?id=1ciFPLlyR6d) (Accepted on SIGKDD 2023).
+The implementation for paper [Machine Unlearning in Gradient Boosting Decision Trees](https://dl.acm.org/doi/10.1145/3580305.3599420) (Accepted on SIGKDD 2023).
 OnlineBoosting support training, unlearning and tuning. This implementation base on the toolkit of [ABCBoost](https://github.com/pltrees/abcboost).
 
 ## Quick Start
