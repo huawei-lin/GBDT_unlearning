@@ -107,13 +107,16 @@ Here we would like to evaluate these three models in `./data/optdigits.test.csv`
 ## References
 If you found OnlineBoosting useful in your research or applications, please cite using the following article:
 ```
-@inproceedings{Proc:Lin_KDD23,
-  author    = {Huawei Lin and Jun Woo Chung and Yingjie Lao and Weijie Zhao},
-  title     = {Machine Unlearning in Gradient Boosting Decision Trees},
-  booktitle = {KDD},
-  year      = {2023},
-  address   = {Long Beach, CA}
+@inproceedings{10.1145/3580305.3599420,
+  author = {Lin, Huawei and Chung, Jun Woo and Lao, Yingjie and Zhao, Weijie},
+  title = {Machine Unlearning in Gradient Boosting Decision Trees},
+  year = {2023},
+  booktitle = {Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
+  pages = {1374–1383},
+  numpages = {10},
+  address = {Long Beach, CA, USA},
 }
+
 ```
 ```
 @article{DBLP:journals/corr/abs-2207-08770,
