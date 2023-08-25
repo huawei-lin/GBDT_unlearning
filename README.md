@@ -1,6 +1,6 @@
 # OnlineBoosting
 
-The implementation for paper [Machine Unlearning in Gradient Boosting Decision Trees](https://dl.acm.org/doi/10.1145/3580305.3599420) (Accepted on SIGKDD 2023).
+The implementation for paper [Machine Unlearning in Gradient Boosting Decision Trees](https://dl.acm.org/doi/10.1145/3580305.3599420) (Accepted on KDD 2023).
 OnlineBoosting support training, unlearning and tuning. This implementation base on the toolkit of [ABCBoost](https://github.com/pltrees/abcboost).
 
 ## Quick Start
@@ -107,14 +107,17 @@ Here we would like to evaluate these three models in `./data/optdigits.test.csv`
 ## References
 If you found OnlineBoosting useful in your research or applications, please cite using the following article:
 ```
-@inproceedings{10.1145/3580305.3599420,
-  author = {Lin, Huawei and Chung, Jun Woo and Lao, Yingjie and Zhao, Weijie},
-  title = {Machine Unlearning in Gradient Boosting Decision Trees},
-  year = {2023},
-  booktitle = {Proceedings of the 29th ACM SIGKDD Conference on Knowledge Discovery and Data Mining (KDD)},
-  pages = {1374–1383},
-  numpages = {10},
-  address = {Long Beach, CA, USA},
+@inproceedings{DBLP:conf/kdd/LinCL023,
+  author       = {Huawei Lin and
+                  Jun Woo Chung and
+                  Yingjie Lao and
+                  Weijie Zhao},
+  title        = {Machine Unlearning in Gradient Boosting Decision Trees},
+  booktitle    = {Proceedings of the 29th {ACM} {SIGKDD} Conference on Knowledge Discovery
+                  and Data Mining, {KDD}},
+  address      = {Long Beach, CA},
+  pages        = {1374--1383},
+  year         = {2023}
 }
 
 ```
@@ -125,7 +128,7 @@ If you found OnlineBoosting useful in your research or applications, please cite
   title     = {Package for Fast ABC-Boost},
   journal   = {CoRR},
   volume    = {abs/2207.08770},
-  year      = {2022},
+  year      = {2022}
 }
 ```
 
