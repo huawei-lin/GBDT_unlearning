@@ -119,7 +119,6 @@ If you found OnlineBoosting useful in your research or applications, please cite
   pages        = {1374--1383},
   year         = {2023}
 }
-
 ```
 ```
 @article{DBLP:journals/corr/abs-2207-08770,
