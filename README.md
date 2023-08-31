@@ -12,7 +12,7 @@ cd OnlineBoosting
 mkdir build
 cd build
 cmake ..
-make
+make -j
 cd ..
 ```
 This will create three executables (`abcboost_train`, `abcboost_predict`, `abcboost_unlearn`, `abcboost_tune`, and `abcboost_clean`) in the `abcboost` directory.
@@ -21,23 +21,6 @@ This will create three executables (`abcboost_train`, `abcboost_predict`, `abcbo
 `abcboost_unlearn` is the executable to unlearn a given collection of training data from a trained model.
 `abcboost_tune` is the executable to tune a trained model in new data.
 `abcboost_clean` is the executable to clean csv data.
-
-The default setting builds ABCBoost as a single-thread program.  To build ABCBoost with multi-thread support [OpenMP](https://en.wikipedia.org/wiki/OpenMP) (OpenMP comes with the system GCC toolchains on Linux), turn on the multi-thread option:
-```
-cmake -DOMP=ON ..
-make clean
-make
-```
-Note that the default g++ on Mac may not support OpenMP.  To install, execute `brew install libomp` before `cmake`.
-
-
-If we set `-DNATIVE=ON`, the compiler may better optimize the code according to specific native CPU instructions: 
-```
-cmake -DOMP=ON -DNATIVE=ON .. 
-make clean
-make
-```
-We do not recommend to turn on this option on Mac. 
 
 ### Datasets 
 
