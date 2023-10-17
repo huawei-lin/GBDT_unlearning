@@ -15,7 +15,7 @@ cmake ..
 make -j
 cd ..
 ```
-This will create three executables (`abcboost_train`, `abcboost_predict`, `abcboost_unlearn`, `abcboost_tune`, and `abcboost_clean`) in the `abcboost` directory.
+This will create three executables (`abcboost_train`, `abcboost_predict`, `abcboost_unlearn`, and `abcboost_clean`) in the `abcboost` directory.
 `abcboost_train` is the executable to train models.
 `abcboost_predict` is the executable to validate and inference using trained models.
 `abcboost_unlearn` is the executable to unlearn a given collection of training data from a trained model.
