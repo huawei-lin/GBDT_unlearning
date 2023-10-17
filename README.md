@@ -19,7 +19,6 @@ This will create three executables (`abcboost_train`, `abcboost_predict`, `abcbo
 `abcboost_train` is the executable to train models.
 `abcboost_predict` is the executable to validate and inference using trained models.
 `abcboost_unlearn` is the executable to unlearn a given collection of training data from a trained model.
-`abcboost_tune` is the executable to tune a trained model in new data.
 `abcboost_clean` is the executable to clean csv data.
 
 ### Datasets 
@@ -41,19 +40,11 @@ echo 9 > unids.txt # Unlearn 9-th data sample
 ./abcboost_unlearn -data ./data/optdigits.train.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model -unlearning_ids_path unids.txt
 ```
 
-### Tuning
-Here we would like to tune (add) a new dataset `./data/optdigits.tune.csv` to the `optdigits.train.csv_robustlogit_J20_v0.1.model`.
-Please note that it need to load the original data of the model.
-```
-./abcboost_tune -method robustlogit -data ./data/optdigits.train.csv -tuning_data_path ./data/optdigits.tune.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model
-```
-
 ### Predicting
 Here we would like to evaluate these three models in `./data/optdigits.test.csv`.
 ```
 ./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1.model
 ./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1_unlearn.model
-./abcboost_predict -data ./data/optdigits.test.csv -model optdigits.train.csv_robustlogit_J20_v0.1_tune.model
 ```
 
 ## More Configuration Options:
@@ -76,8 +67,6 @@ Here we would like to evaluate these three models in `./data/optdigits.test.csv`
 #### Unlearning related:
 * `-unlearning_ids_path` path to unlearning indices
 * `-lazy_update_freq` (default 1)
-#### Tuning related:
-* `-tuning_data_path` path to tuning data
 #### Parallelism:
 * `-n_threads`, `-threads` (default 1)
 #### Other:
